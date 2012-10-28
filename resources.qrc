@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/opengl">
+        <file alias="opengl-logo">resources/opengl_bw.gif</file>
+    </qresource>
+</RCC>
