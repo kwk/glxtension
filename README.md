@@ -1,6 +1,7 @@
-glxtension
-==========
+# glxtension
 
-Here's a screenshot of Version v0.0.1: ![Screenshot][screenshot]
+Here's a screenshot of Version v0.0.1:
 
-[screenshot]: https://github.com/kwk/glxtension/blob/master/resources/screenshots/screenshot-v0.0.1.png "Screenshot of glxtension v0.0.1"
+![Screenshot of Version v0.0.1][screenshot-v0.0.1]
+
+[screenshot-v0.0.1]: https://raw.github.com/kwk/glxtension/master/resources/screenshots/screenshot-v0.0.1.png "Screenshot of Version v0.0.1"
