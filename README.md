@@ -4,7 +4,7 @@
 
 ![Filter the extension tree][filter_extension_tree]
 
-Apart from that you can read the extension's specification either by double-clicking onto the extension name in the tree-list or by using the auto-completion combo-box on the *Specifications* tab.
+Apart from that you can read the extension's specification either by double-clicking on the extension name in the tree-list or by using the auto-completion combo-box on the *Specifications* tab.
 
 ![Read the specification][read_extension_spec]
 
