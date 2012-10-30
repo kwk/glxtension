@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui opengl
+QT       += core gui opengl webkit
 
 TARGET = glxtension
 TEMPLATE = app

@@ -1,7 +1,12 @@
 # glxtension
 
-Here's a screenshot of Version v0.0.1:
+**glextension** let's you see what your current OpenGL setup is capable of in terms of OpenGL Version, Renderer, Vendor and Extensions. Especially the latter is pretty important and that's where the main focus of this application lies on. It presents sort of a tree-list of a extensions grouped by corporation or institution that are currently available on your system:
 
-![Screenshot of Version v0.0.1][screenshot-v0.0.1]
+![Filter the extension tree][filter_extension_tree]
 
-[screenshot-v0.0.1]: https://raw.github.com/kwk/glxtension/master/resources/screenshots/screenshot-v0.0.1.png "Screenshot of Version v0.0.1"
+Apart from that you can read the extension's specification either by double-clicking onto the extension name in the tree-list or by using the auto-completion combo-box on the *Specifications* tab.
+
+![Read the specification][read_extension_spec]
+
+[filter_extension_tree]: https://raw.github.com/kwk/glxtension/master/resources/screenshots/filter_extension_tree.png "Filter the extension tree"
+[read_extension_spec]: https://raw.github.com/kwk/glxtension/master/resources/screenshots/read_extension_spec.png "Read the extension specification"
