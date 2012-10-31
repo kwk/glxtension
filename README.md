@@ -1,4 +1,5 @@
 # glxtension
+Build Status: [![Build Status](https://secure.travis-ci.org/kwk/glxtension.png?branch=master)](http://travis-ci.org/kwk/glxtension)
 
 **glextension** let's you see what your current OpenGL setup is capable of in terms of OpenGL Version, Renderer, Vendor and Extensions. Especially the latter is pretty important and that's where the main focus of this application lies on. It presents sort of a tree-list of a extensions grouped by corporation or institution that are currently available on your system:
 
