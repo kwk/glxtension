@@ -4,4 +4,4 @@ before_install:
 branches:
   only:
     - master
-script: mkdir ./build && qmake .. && make
+script: mkdir ./build && cd ./build && qmake .. && make
