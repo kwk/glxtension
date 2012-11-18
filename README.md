@@ -11,6 +11,10 @@ Apart from that you can read the extension's specification either by double-clic
 
 # Building from source
 
+Get the build dependencies (Ubuntu/Debian way):
+
+    sudo apt-get install libqt4-opengl-dev qt4-qmake libqtgui4 libqtwebkit-dev
+
 Check out the source from Github
 
     git clone https://github.com/kwk/glxtension.git
