@@ -9,5 +9,28 @@ Apart from that you can read the extension's specification either by double-clic
 
 ![Read the specification][read_extension_spec]
 
+# Building from source
+
+Check out the source from Github
+
+    git clone https://github.com/kwk/glxtension.git
+
+Create a shadow-build directory and navigate to it
+
+    mkdir glxtension/build
+    cd glxtension/build
+
+Create Makefiles
+
+    qmake ..
+
+Run Make
+
+    make
+
+Run the application
+
+    ./glxtension
+
 [filter_extension_tree]: https://raw.github.com/kwk/glxtension/master/resources/screenshots/filter_extension_tree.png "Filter the extension tree"
 [read_extension_spec]: https://raw.github.com/kwk/glxtension/master/resources/screenshots/read_extension_spec.png "Read the extension specification"
