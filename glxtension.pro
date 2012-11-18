@@ -10,12 +10,12 @@ TARGET = glxtension
 TEMPLATE = app
 
 
-SOURCES += glxtension/main.cpp\
-        glxtension/main_window.cpp
+SOURCES += source/glxtension/main.cpp\
+        source/glxtension/main_window.cpp
 
-HEADERS  += glxtension/main_window.h\
-        glxtension/gl_helper_widget.h
+HEADERS  += source/glxtension/main_window.h\
+        source/glxtension/gl_helper_widget.h
 
-FORMS    += glxtension/main_window.ui
+FORMS    += source/glxtension/main_window.ui
 
 RESOURCES += resources.qrc
