@@ -96,11 +96,20 @@ void MainWindow::on_filterText_textChanged(const QString & text)
 
 void MainWindow::loadExtensionSpec(const QString & extension)
 {
-    QString corp = extension.split("_").at(1);
-    QString base = extension;
-    base = base.replace(0, corp.length()+4, ""); // "GL_" (3 chars) ... "_" (1 char)
+    // Parse extension name 
+    QRegExp regex = QRegExp("^([A-Z]+)_([A-Z_]*[A-Z])_([\\w_]+)$");
+
+    if (regex.indexIn(extension) == -1) {
+        m_ui->extensionSpecView->setHtml("Invalid extension name", QUrl(""));
+        return;
+    }
+
+    QString corp = regex.cap(2);
+    QString base = regex.cap(3);
     QString url = "http://www.opengl.org/registry/specs/"+corp+"/"+base+".txt";
     qDebug() << "Spec URL: " << url;
+
+    // Load specification site
     m_ui->extensionSpecView->load(url);
     // Find and select the item in the extension combo box
     int idx = m_ui->extensionComboBox->findText(extension);
