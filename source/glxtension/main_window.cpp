@@ -96,7 +96,12 @@ void MainWindow::on_filterText_textChanged(const QString & text)
 
 void MainWindow::loadExtensionSpec(const QString & extension)
 {
-    QString corp = extension.split("_").at(1);
+    QStringList splitList = extension.split("_");
+    if (splitList.size() < 2) {
+        m_ui->extensionSpecView->setHtml(tr("Please, specify the extension name in full format (e.g. \"GL_ARB_extension_name\")."), QUrl(""));
+        return;
+    }
+    QString corp = splitList.at(1);
     QString base = extension;
     base = base.replace(0, corp.length()+4, ""); // "GL_" (3 chars) ... "_" (1 char)
     QString url = "http://www.opengl.org/registry/specs/"+corp+"/"+base+".txt";
