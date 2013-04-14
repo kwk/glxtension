@@ -1,6 +1,5 @@
 #include <QDebug>
 #include <QCompleter>
-#include <QSortFilterProxyModel>
 #include "main_window.h"
 #include "ui_main_window.h"
 #include "gl_helper_widget.h"
@@ -15,7 +14,6 @@ MainWindow::MainWindow(QWidget *parent) :
     m_ui->vendorValue->setText(helperWidget->getString(GL_VENDOR));
     m_ui->rendererValue->setText(helperWidget->getString(GL_RENDERER));
     m_ui->versionValue->setText(helperWidget->getString(GL_VERSION));
-    m_ui->glslVersionValue->setText(helperWidget->getString(GL_SHADING_LANGUAGE_VERSION));
 
     // Collect extension info and put them into a map with key: corp and value: extension
 
@@ -50,13 +48,6 @@ MainWindow::MainWindow(QWidget *parent) :
     QCompleter *completer = new QCompleter(m_extensionList, this);
     completer->setCaseSensitivity(Qt::CaseInsensitive);
     m_ui->extensionComboBox->setCompleter(completer);
-
-    // Allow filtering with regular expressions
-    QSortFilterProxyModel *pFilterModel = new QSortFilterProxyModel(this);
-    pFilterModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
-    pFilterModel->setSourceModel(m_ui->extensionComboBox->model());
-    connect(m_ui->extensionComboBox, SIGNAL(editTextChanged(QString)), pFilterModel, SLOT(setFilterRegExp(QString)));
-    completer->setModel(pFilterModel);
 }
 
 MainWindow::~MainWindow()
@@ -105,12 +96,7 @@ void MainWindow::on_filterText_textChanged(const QString & text)
 
 void MainWindow::loadExtensionSpec(const QString & extension)
 {
-    QStringList splitList = extension.split("_");
-    if (splitList.size() < 2) {
-        m_ui->extensionSpecView->setHtml(tr("Please, specify the extension name in full format (e.g. \"GL_ARB_extension_name\")."), QUrl(""));
-        return;
-    }
-    QString corp = splitList.at(1);
+    QString corp = extension.split("_").at(1);
     QString base = extension;
     base = base.replace(0, corp.length()+4, ""); // "GL_" (3 chars) ... "_" (1 char)
     QString url = "http://www.opengl.org/registry/specs/"+corp+"/"+base+".txt";
@@ -126,13 +112,13 @@ void MainWindow::loadExtensionSpec(const QString & extension)
 void MainWindow::loadSpecStarted()
 {
     QString url = m_ui->extensionSpecView->url().toString();
-    m_ui->statusBar->showMessage(tr("Start loading: %1").arg(url));
+    m_ui->statusBar->showMessage(tr("Start loading: ") + url);
 }
 
 void MainWindow::loadSpecProgress(int progress)
 {
     QString url = m_ui->extensionSpecView->url().toString();
-    m_ui->statusBar->showMessage(tr("Loading: %1").arg(url) + " " + QString::number(progress) + "%");
+    m_ui->statusBar->showMessage(tr("Loading: ") + url + " " + QString::number(progress) + "%");
 }
 
 void MainWindow::loadSpecFinished(bool ok)
@@ -140,10 +126,10 @@ void MainWindow::loadSpecFinished(bool ok)
     QString url = m_ui->extensionSpecView->url().toString();
 
     if (!ok) {
-        m_ui->statusBar->showMessage(tr("Failed Loading: %1").arg(url));
+        m_ui->statusBar->showMessage(tr("Failed Loading: ") + url);
         return;
     }
-    m_ui->statusBar->showMessage(tr("Loaded: %1").arg(url));
+    m_ui->statusBar->showMessage(tr("Loaded: ") + url);
 
     m_ui->extensionTabs->setCurrentWidget(m_ui->extensionSpecTab);
 }
