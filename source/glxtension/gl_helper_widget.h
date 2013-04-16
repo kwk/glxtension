@@ -55,8 +55,8 @@ protected:
 
     /*! Will be called everytime the widget is resized. */
     void resizeGL(int width, int height) {
-	Q_UNUSED(width);
-	Q_UNUSED(height);
+    Q_UNUSED(width);
+    Q_UNUSED(height);
 //        glViewport(0, 0, (GLsizei) width, (GLsizei) height);
     }
 

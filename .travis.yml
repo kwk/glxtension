@@ -1,7 +1,7 @@
 language: cpp
 before_install:
- - sudo apt-get install libqt4-opengl-dev qt4-qmake libqtgui4 libqtwebkit-dev
+ - sudo apt-get install cmake libqt4-opengl-dev qt4-qmake libqtgui4 libqtwebkit-dev
 branches:
   only:
     - master
-script: mkdir ./build && cd ./build && qmake .. && make
+script: mkdir ./build && cd ./build && cmake .. && make

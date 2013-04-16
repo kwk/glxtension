@@ -31,7 +31,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 Get the build dependencies (Ubuntu/Debian way):
 
-    sudo apt-get install libqt4-opengl-dev qt4-qmake libqtgui4 libqtwebkit-dev
+    sudo apt-get install cmake libqt4-opengl-dev qt4-qmake libqtgui4 libqtwebkit-dev
 
 Check out the source from Github
 
@@ -44,7 +44,7 @@ Create a shadow-build directory and navigate to it
 
 Create Makefiles
 
-    qmake ..
+    cmake ..
 
 Run Make
 

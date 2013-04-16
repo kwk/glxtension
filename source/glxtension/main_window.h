@@ -24,6 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <QStringList>
 
 class QTreeWidgetItem;
+class QNetworkReply;
 
 namespace Ui {
 class MainWindow;
@@ -34,24 +35,63 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
+    enum kRegistrySection {
+        kNone       = 0,
+        kCOLLADA    = 1 << 0,
+        kEGL        = 1 << 1,
+        kOpenCL     = 1 << 2,
+        kOpenGL     = 1 << 3,
+        kOpenGL_ES  = 1 << 4,
+        kOpenGL_SC  = 1 << 5,
+        kOpenKODE   = 1 << 6,
+        kOpenMAX_AL = 1 << 7,
+        kOpenMAX_IL = 1 << 8,
+        kOpenSL_ES  = 1 << 9,
+        kOpenVG     = 1 << 10,
+        kOpenWF     = 1 << 11,
+        kWebGL      = 1 << 12,
+        kUnknown    = 1 << 13,
+        kAll        = 0xFFFF
+    };
+
     explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
+    virtual ~MainWindow();
 
 public slots:
     void extension_doubleClicked(QTreeWidgetItem * item, int column);
 
 protected slots:
     void on_filterText_textChanged(const QString & text);
-    void loadExtensionSpec(const QString & extension);
+    void loadExtensionSpec(const QString & extension, kRegistrySection section=kOpenGL);
     // Slots for dealing with loading extension specifications from the web:
     void loadSpecStarted();
     void loadSpecProgress(int progress);
     void loadSpecFinished(bool ok);
+    void gotNetworkReply(QNetworkReply * reply);
 
 private:
-    Ui::MainWindow *m_ui;
-    QMap<QString, QStringList> m_extMap;
-    QStringList m_extensionList;
+    Ui::MainWindow *fUi;
+    QMap<QString, QStringList> fExtMap;
+    QStringList fExtensionList;
+    /**
+     * For each registry section we specify a URL string that can take six arguments:
+     * %1 The organization (e.g. NV)
+     * %2 The base string (vertex_half_float)
+     * %3 Same as %1 but in lower case letters
+     * %4 Same as %2 but in lower case letters
+     * %5 Same as %1 but in UPPER case letters
+     * %6 Same as %2 but in UPPER case letters
+     */
+    QMap<kRegistrySection, QString> fSpecBaseUrls;
+    int fScannedRegSections;
+    /**
+     * The currently selected extension, e.g. GL_ARB_vertex_buffer
+     */
+    QString fCurExtension;
+    /**
+     * The URL that is currently being processed to find the extension online.
+     */
+    QString fCurUrl;
 };
 
 #endif // MAIN_WINDOW_H
